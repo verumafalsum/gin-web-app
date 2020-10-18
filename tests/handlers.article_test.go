@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"gin-web-app/handlers"
 	"io/ioutil"
 	"net/http"
 	"net/http/httptest"
@@ -14,7 +15,7 @@ import (
 func TestShowIndexPageUnauthenticated(t *testing.T) {
 	r := getRouter(true)
 
-	r.GET("/", showIndexPage)
+	r.GET("/", handlers.ShowIndexPage)
 
 	// Create a request to send to the above route
 	req, _ := http.NewRequest("GET", "/", nil)
@@ -34,7 +35,7 @@ func TestShowIndexPageUnauthenticated(t *testing.T) {
 func TestArticleListJSON(t *testing.T) {
 	r := getRouter(true)
 
-	r.GET("/", showIndexPage)
+	r.GET("/", handlers.ShowIndexPage)
 
 	req, _ := http.NewRequest("GET", "/", nil)
 	req.Header.Set("Accept", "application/json")

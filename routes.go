@@ -1,7 +1,9 @@
 package main
 
-func initializeRoutes() {
-	router.GET("/", showIndexPage)
+import "gin-web-app/handlers"
 
-	router.GET("/article/view/:article_id", getArticle)
+func initializeRoutes() {
+	router.GET("/", handlers.ShowIndexPage)
+
+	router.GET("/article/view/:article_id", handlers.GetArticle)
 }
