@@ -2,25 +2,28 @@ package models
 
 import "errors"
 
-// Article ...
+// Article is the db table where
+// Title is article title
+// Content is article content
 type Article struct {
 	ID      int    `json:"id"`
 	Title   string `json:"title"`
 	Content string `json:"content"`
 }
 
-// ArticleList ....
+// ArticleList is hardcoded list of Article
+// used to getting blog articles
 var ArticleList = []Article{
-	Article{ID: 1, Title: "Article 1", Content: "Article 1 body"},
-	Article{ID: 2, Title: "Article 2", Content: "Article 2 body"},
+	{ID: 1, Title: "Article 1", Content: "Article 1 body"},
+	{ID: 2, Title: "Article 2", Content: "Article 2 body"},
 }
 
-// GetAllArticles ...
+// GetAllArticles returns all articles
 func GetAllArticles() []Article {
 	return ArticleList
 }
 
-// GetArticleByID ...
+// GetArticleByID returns article by it's id
 func GetArticleByID(id int) (*Article, error) {
 	for _, a := range ArticleList {
 		if a.ID == id {

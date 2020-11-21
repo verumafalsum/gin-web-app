@@ -9,7 +9,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// ShowIndexPage ... Rendering index.html with title "Home Page" & articles payload
+// ShowIndexPage rendering index.html with title "Home Page" and payload of all articles
 func ShowIndexPage(c *gin.Context) {
 	articles := models.GetAllArticles()
 
@@ -19,8 +19,9 @@ func ShowIndexPage(c *gin.Context) {
 	}, "index.html")
 }
 
-// GetArticle ...
-func GetArticle(c *gin.Context) {
+// ShowArticlePage rendering article.html with article title and payload of article.
+// The article to be rendered depends on param "article_id" in context
+func ShowArticlePage(c *gin.Context) {
 	if articleID, err := strconv.Atoi(c.Param("article_id")); err == nil {
 		if article, err := models.GetArticleByID(articleID); err == nil {
 			helpers.Render(c, gin.H{
